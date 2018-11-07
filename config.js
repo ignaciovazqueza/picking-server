@@ -7,7 +7,7 @@ module.exports = {
 
 	// DB connection
 	connectionString: process.env.DATABASE_URL || 'postgres://nacho@localhost:5432/postgres',
-	schema: 'test',
+	schema: 'picking-ok5',
 
 	// Pagination and maximum number of rows
 	pageSize: 50,

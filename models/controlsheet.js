@@ -22,6 +22,15 @@ module.exports = {
 
     fields: [
         {
+            id: 'name',
+            label: 'Nombre',
+            column: 'name',
+            type: 'text',
+            maxLength: 50,
+            inMany: true,
+            required: true
+        },
+        {
             id: 'consolidatedinterface_id',
             label: 'Interfaz consolidada',
             column: 'consolidatedinterface_id',
@@ -30,15 +39,6 @@ module.exports = {
             inMany: true,
             required: true,
             lovtable: 'consolidatedinterface'
-        },
-        {
-            id: 'name',
-            label: 'Nombre',
-            column: 'name',
-            type: 'text',
-            maxLength: 50,
-            inMany: true,
-            required: true
         },
         {
             id: 'status',

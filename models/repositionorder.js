@@ -13,6 +13,15 @@ module.exports = {
 
     fields: [
         {
+            id: 'name',
+            label: 'Nombre',
+            column: 'name',
+            type: 'text',
+            maxLength: 50,
+            inMany: true,
+            required: true
+        },
+        {
             id: 'item_id',
             label: 'Artículo',
             column: 'item_id',
@@ -23,20 +32,20 @@ module.exports = {
             lovtable: 'item'
         },
         {
-            id: 'name',
-            label: 'Nombre',
-            column: 'name',
-            type: 'text',
-            maxLength: 50,
-            inMany: true,
-            required: true
-        },
-        {
             id: 'quantity',
             label: 'Cantidad',
             column: 'quantity',
             type: 'integer',
             maxLength: 4,
+            inMany: true,
+            required: true
+        },
+        {
+            id: "position",
+            label: "Posición",
+            column: "position",
+            type: "text",
+            maxLength: 20,
             inMany: true,
             required: true
         },

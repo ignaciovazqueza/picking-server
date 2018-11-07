@@ -29,15 +29,6 @@ module.exports = {
             maxLength: 50,
             inMany: true,
             required: true
-        },
-        {
-            id: 'position',
-            label: 'Posición',
-            column: 'position',
-            type: 'text',
-            maxLength: 20,
-            inMany: true,
-            required: true
         }
     ],
 };
