@@ -4,7 +4,7 @@ RESTful Micro-ORM for CRUD and more, using Node.js, Express, and PostgreSQL.
 
 Picking-Server provides a set of generic REST endpoints for CRUD (Create, Read, Update, Delete) and simple charts based on models rather than code.
  
-For a matching model-driven UI, use [Picking-Client](https://github.com/ignaciovazqueza/picking-client) .
+For a matching model-driven UI, use [Picking-Client](https://github.com/ignaciovazqueza/picking-client).
 
 
 ## Installation
