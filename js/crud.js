@@ -341,7 +341,7 @@ function lovOne(req, res) {
     logger.logReq('LOV ONE', req);
 
     const mid = req.params.entity,
-        m = dico.getModel(entity),
+        m = dico.getModel(req.params.entity),
         fid = req.params.field
     let f = m.fieldsH[fid];
 

@@ -1,10 +1,12 @@
 
 module.exports = {
-	todo: require('./todo.data'),
-	contact: require('./contact.data'),
-	comics: require('./comics.data'),
-	winecellar: require('./winecellar.data'),
-	winetasting: require('./winetasting.data'),
-	restaurant: require('./restaurant.data'),
-	//test: require('./test.data'),
+    accidentalert: require('./accidentalert.data'),
+    client: require('./client.data'),
+    worker: require('./worker.data'),
+    item: require('./item.data'),
+    consolidatedinterface: require('./consolidatedinterface.data'),
+    controlsheet: require('./controlsheet.data'),
+    pickingorder: require('./pickingorder.data'),
+    preloadorder: require('./preloadorder.data'),
+    repositionorder: require('./repositionorder.data'),
 };
