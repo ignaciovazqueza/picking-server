@@ -1,35 +1,28 @@
-# Evolutility-Server-Node
+# Picking-Server
 
 RESTful Micro-ORM for CRUD and more, using Node.js, Express, and PostgreSQL.
 
-Evolutility-Server-Node provides a set of generic REST endpoints for CRUD (Create, Read, Update, Delete) and simple charts based on models rather than code.
+Picking-Server provides a set of generic REST endpoints for CRUD (Create, Read, Update, Delete) and simple charts based on models rather than code.
  
-For a matching model-driven UI, use [Evolutility-UI-React](http://github.com/evoluteur/evolutility-ui-react) or [Evolutility-UI-jQuery](http://github.com/evoluteur/evolutility-ui-jquery).
+For a matching model-driven UI, use [Picking-Client](https://github.com/ignaciovazqueza/picking-client) .
 
 
 ## Installation
 
-[Download](https://github.com/evoluteur/evolutility-server-node/archive/master.zip) or clone from GitHub.
+[Download](https://github.com/ignaciovazqueza/picking-server/archive/master.zip) or clone from GitHub.
 
 ```bash
 # To get the latest stable version, use git from the command line.
-git clone https://github.com/evoluteur/evolutility-server-node
+git clone https://github.com/ignaciovazqueza/picking-server.git
 ```
-or use the [npm package](https://www.npmjs.com/package/evolutility-server-node):
-
-```bash
-# To get the latest stable version, use npm from the command line.
-npm install evolutility-server-node
-```
-
 
 ## Setup
 
-After installing Evolutility-Server-Node, follow these steps:
+After installing Picking-Server, follow these steps:
 
 1. Create a PostgreSQL database.
 
-2. In the file [config.js](https://github.com/evoluteur/evolutility-server-node/blob/master/config.js) set the PostgreSQL connection string and the schema name to access your new database.
+2. In the file [config.js](https://github.com/ignaciovazqueza/picking-server/blob/master/config.js) set the PostgreSQL connection string and the schema name to access your new database.
 
 3. Maybe, also change other config options in the same file.
 
@@ -54,7 +47,7 @@ In a web browser, go to the url [http://localhost:2000/api/v1/evolutility/todo](
 
 ## Configuration
 
-Configuration options are set in the file [config.js](https://github.com/evoluteur/evolutility-server-node/blob/master/config.js).
+Configuration options are set in the file [config.js](https://github.com/ignaciovazqueza/picking-server/blob/master/config.js).
 
 
 | Option       | Description                             |
@@ -112,67 +105,56 @@ Below is the model for a To-Do app.
 
 ```javascript
 module.exports = {
-    id: "todo",
-    table: "task",
-    titleField: "title",
-    searchFields: ["title", "duedate", "description"],
+    id: 'item',
+    entity: 'item',
+    table: 'item',
+    active: true,
+
+    titleField: 'name',
+    searchFields: ['sku', 'name', 'position'],
+
+    label: 'Artículos',
+    name: 'artículo',
+    namePlural: 'artículos',
+
     fields: [
         {
-            id: "title", 
-            column: "title", 
-            type: "text", 
-            required: true, 
-            inMany: true
+            id: 'sku',
+            label: 'SKU',
+            column: 'sku',
+            type: 'text',
+            maxLength: 20,
+            inMany: true,
+            required: true
         },
         {
-            id: "duedate", 
-            column: "duedate", 
-            type: "date", 
-            inMany: true
+            id: 'name',
+            label: 'Nombre',
+            column: 'name',
+            type: 'text',
+            maxLength: 50,
+            inMany: true,
+            required: true
         },
         {
-            id: "category", 
-            column: "category_id", 
-            type: "lov", 
-            lovtable: "task_category",
-            inMany: true
-        },
-        {
-            id: "priority", 
-            column: "priority_id", 
-            type: "lov", 
-            lovtable: "task_priority", 
-            required: true, 
-            inMany: true
-        {
-            id: "complete", 
-            column: "complete", 
-            type: "boolean", 
-            inMany: true
-        },
-        {
-            id: "description", 
-            column: "description", 
-            type: "textmultiline"
+            id: 'position',
+            label: 'Posición',
+            column: 'position',
+            type: 'text',
+            maxLength: 20,
+            inMany: true,
+            required: true
         }
-    ]
+    ],
 };
-
 ```
 
-More sample models: 
- [Address book](https://github.com/evoluteur/evolutility-server-node/blob/master/models/contact.js),
- [Restaurants list](https://github.com/evoluteur/evolutility-server-node/blob/master/models/restaurant.js),
- [Wine cellar](https://github.com/evoluteur/evolutility-server-node/blob/master/models/winecellar.js),
- [Graphic novels inventory](https://github.com/evoluteur/evolutility-server-node/blob/master/models/comics.js). 
- 
-
 ## API
-Evolutility-Server-Node provides a generic RESTful API for CRUD (Create, Read, Update, Delete) and more.
+Picking-Server provides a generic RESTful API for CRUD (Create, Read, Update, Delete) and more.
 It is a partial server-side Javascript implementation of [PostgREST](http://postgrest.com) using [Node.js](https://nodejs.org/en/), [Express](http://expressjs.com/) and [PostgreSQL](http://www.postgresql.org/).
 
-When running Evolutility-Server-Node locally, the url for the "todo" app is 
-[http://localhost:2000/api/v1/evolutility/todo](http://localhost:2000/api/v1/evolutility/todo).
+When running Picking-Server locally, the url for the "item" app is 
+[http://localhost:2000/api/v1/evolutility/item](http://localhost:2000/api/v1/evolutility/item).
 
 ### Requesting Information
 
@@ -182,7 +164,7 @@ To get a specific record by ID, use "< ObjectName >/ID".
 ```
 GET /<model.id>/<id>
 
-GET /todo/12
+GET /item/12
 ```
 
 #### Get Many
@@ -191,7 +173,7 @@ Every model is exposed. You can query lists of items by using the model ID.
 ```
 GET /<model.id>
 
-GET /todo
+GET /item
 ```
 
 #### Filtering
@@ -200,31 +182,31 @@ You can filter result rows by adding conditions on fields, each condition is a q
 ```
 GET /<model.id>/<field.id>=<operator>.<value>
 
-GET /todo?title=sw.a
-GET /todo?priority=in.1,2,3
+GET /item?title=sw.a
+GET /item?priority=in.1,2,3
 ```
 Adding multiple parameters conjoins the conditions:
 ```
-todo?complete=0&duedate=lt.2017-01-01
+item?sku=1&position=A1
 ```
 
 These operators are available:
 
 | Operator     | Meaning                 | Example                      |
 |--------------|-------------------------|------------------------------|
-| eq           | equals                  | /todo?category=eq.1          |
-| gt           | greater than            | /todo?duedate=gt.2017-01-15  |
-| lt           | less than               | /todo?duedate=lt.2017-01-15  |
-| gte          | less than or equal      | /todo?duedate=gte.2017-01-15 |
-| lte          | less than or equal      | /todo?duedate=lte.2017-01-15 |
-| ct           | contains                | /todo?title=ct.e             |
-| sw           | start with              | /todo?title=sw.a             |
-| fw           | finishes with           | /todo?title=fw.z             |
-| in           | one of a list of values | /todo?priority=in.1,2,3      |
-| 0            | is false or null        | /todo?complete=0             |
-| 1            | is true                 | /todo?complete=1             |
-| null         | is null                 | /todo?category=null          |
-| nn           | is not null             | /todo?category==nn           |
+| eq           | equals                  | /item?category=eq.1          |
+| gt           | greater than            | /item?duedate=gt.2017-01-15  |
+| lt           | less than               | /item?duedate=lt.2017-01-15  |
+| gte          | less than or equal      | /item?duedate=gte.2017-01-15 |
+| lte          | less than or equal      | /item?duedate=lte.2017-01-15 |
+| ct           | contains                | /item?title=ct.e             |
+| sw           | start with              | /item?title=sw.a             |
+| fw           | finishes with           | /item?title=fw.z             |
+| in           | one of a list of values | /item?priority=in.1,2,3      |
+| 0            | is false or null        | /item?complete=0             |
+| 1            | is true                 | /item?complete=1             |
+| null         | is null                 | /item?category=null          |
+| nn           | is not null             | /item?category==nn           |
 
 
 #### Ordering
@@ -234,11 +216,11 @@ The reserved word "order" reorders the response rows. It uses a comma-separated 
 ```
 GET /<model.id>?order=<field.id>.<asc/desc>
 
-GET /todo?order=priority.desc,title.asc
+GET /item?order=priority.desc,title.asc
 ```
 If no direction is specified it defaults to ascending order:
 ```
-GET /todo?order=duedate
+GET /item?order=duedate
 ```
 
 #### Limiting and Pagination
@@ -249,7 +231,7 @@ The reserved words "page" and "pageSize" limits the response rows.
 ```
 GET /<model.id>?page=<pageindex>&pageSize=<pagesize>
 
-GET /todo?page=0&pageSize=50
+GET /item?page=0&pageSize=50
 ```
 
 #### Formatting
@@ -260,7 +242,7 @@ This feature is using [express-csv](https://github.com/nulltask/express-csv).
 ```
 GET /<model.id>?format=csv
 
-GET /todo?format=csv
+GET /item?format=csv
 ```
 Notes: In the returned data every object has an extra property "\_full_count" which indicate the total number of records in the query (before limit).
 
@@ -273,7 +255,7 @@ To create a row in a database table post a JSON object whose keys are the names 
 ```
 POST <model.id> {<data>}
 
-POST /todo
+POST /item
 { title: 'Finish testing', priority: 2}
 ```
 
@@ -286,14 +268,14 @@ PATCH or PUT can be used to update specific records.
 ```
 PATCH /<model.id>/<id>
 
-PATCH /todo/5
+PATCH /item/5
 { title: 'Finish testing', priority: 2}
 ```
 
 ```
 PUT /<model.id>/<id>
 
-PUT /todo/5
+PUT /item/5
 { title: 'Finish testing', priority: 2}
 ```
 Notes: The request returns the updated record. It is not standard but it saves the UI a subsequent call.
@@ -305,12 +287,12 @@ Simply use the DELETE verb with the id of the record to remove.
 ```
 DELETE /<model.id>/<id>
 
-DELETE /todo/5
+DELETE /item/5
 ```
 
 ### Extras endpoints
 
-In addition to CRUD, Evolutility-Server-Node provides a few endpoints for Charts, Lists of values, and more.
+In addition to CRUD, Picking-Server provides a few endpoints for Charts, Lists of values, and more.
 
 #### Discovery
 
@@ -329,7 +311,7 @@ For charts data, it is possible to get aggregated data for field of types lov, b
 ```
 GET /<model.id>/chart/<field id>
 
-GET /todo/chart/category
+GET /item/chart/category
 ```
 
 #### Stats
@@ -339,7 +321,7 @@ Returns the total count, and the min, max, average, and total for numeric fields
 ```
 GET /<model.id>/stats
 
-GET /todo/stats
+GET /item/stats
 ```
 
 #### Lists of Values
@@ -349,7 +331,7 @@ Dropdown fields in the UI (field.type="lov" in the model) have a REST endpoint t
 ```
 GET /<model.id>/lov/<field.id>
 
-GET /todo/lov/category
+GET /item/lov/category
 ```
 
 #### File upload
@@ -359,7 +341,7 @@ This endpoint lets you upload a file. The current (naive) implementation simply 
 ```
 POST /<model.id>/upload/<id>
 
-POST /comics/upload/5
+POST /item/upload/5
 ```
 With query parameters: file and "field.id".
 
@@ -376,5 +358,3 @@ GET /version
 ## License
 
 Copyright (c) 2018 [Olivier Giulieri](https://evoluteur.github.io/).
-
-Evolutility-Server-Node is released under the [MIT license](http://github.com/evoluteur/evolutility-server-node/blob/master/LICENSE.md).
