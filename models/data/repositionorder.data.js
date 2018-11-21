@@ -6,6 +6,6 @@ module.exports = [
         quantity: 10,
         position: 'A1',
         creation_date: '2018-11-07',
-        creation_time: '00:05:00'
+        creation_time: '00:00:00'
     },
 ];

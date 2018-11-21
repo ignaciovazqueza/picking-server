@@ -5,22 +5,13 @@ module.exports = {
     active: true,
 
     titleField: 'name',
-    searchFields: ['sku', 'name', 'position'],
+    searchFields: ['name'],
 
     label: 'Artículos',
     name: 'artículo',
     namePlural: 'artículos',
 
     fields: [
-        {
-            id: 'sku',
-            label: 'SKU',
-            column: 'sku',
-            type: 'text',
-            maxLength: 20,
-            inMany: true,
-            required: true
-        },
         {
             id: 'name',
             label: 'Nombre',

@@ -9,8 +9,8 @@ module.exports = [
         start_date: '2018-11-07',
         start_time: '00:00:00',
         end_date: '2018-11-07',
-        end_time: '00:30:00',
-        picking_time: '00:30:00'
+        end_time: '00:01:00',
+        picking_time: '00:01:00'
     },
     {
         id: '2',
@@ -18,9 +18,13 @@ module.exports = [
         item_id: 2,
         name: 'Orden de pickeo 2',
         quantity: 8,
+        position: 'B2',
         start_date: '2018-11-07',
-        start_time: '00:05:00',
-        position: 'B2'
+        start_time: '00:01:00',
+        end_date: '2018-11-07',
+        end_time: '00:04:00',
+        picking_time: '00:03:00'
+
     },
     {
         id: '3',
@@ -28,8 +32,11 @@ module.exports = [
         item_id: 3,
         name: 'Orden de pickeo 3',
         quantity: 10,
+        position: 'C3',
         start_date: '2018-11-07',
-        start_time: '00:10:00',
-        position: 'C3'
+        start_time: '00:04:00',
+        end_date: '2018-11-07',
+        end_time: '00:08:00',
+        picking_time: '00:04:00'
     },
 ];

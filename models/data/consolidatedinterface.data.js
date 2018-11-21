@@ -13,4 +13,11 @@ module.exports = [
         name: 'Interfaz 2',
         creation_date: '2018-06-08',
     },
+    {
+        id: '3',
+        client_id: 3,
+        worker_id: 3,
+        name: 'Interfaz 3',
+        creation_date: '2018-07-08',
+    },
 ];
